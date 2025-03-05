@@ -35,13 +35,11 @@ L(\theta)=-\mathop{\mathbb{E}}_{t,x_0, x_t}\left[\frac{1}{t} \sum_{i=1}^L \mathb
 
 where $x_0$ is sampled from the training data, $t$ is sample uniformly from $[0,1]$, and $x_t$ is sampled from the forward process. The indicator function $\mathbb{1}$ ensures that the loss is computed only for the masked tokens.
 
+<p align="center">
+    <img src="img/pretrain.png" >
+</p>
 
-<div align="center">
-    <figure>
-   <img src="img/pretrain.png" alt="image explanation"/> 
-        <figcaption><strong>Pre-training : dLLM is trained on text with random masks applied independently to all tokens at the same ratio t ∼ U[0, 1]</strong></figcaption>
-    </figure>
-</div>
+<p align="center"><strong>Pre-training : dLLM is trained on text with random masks applied independently to all tokens at the same ratio t ∼ U[0, 1]</strong></p>
 
 Pre-training dLLM code resembles autoregressive model training but with some small changes. 
 
