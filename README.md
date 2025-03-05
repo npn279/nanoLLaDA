@@ -23,21 +23,25 @@ Any auto-regressive GPT-like model can be easily modified to a dLLM. The only th
 Likewise, the training of this newly GPT-like dLLM also is altered. The dLLM is now a mask predictor instead of being a next-token predictor. 
 
 For a training sequence $x_0$ (i.e. sentence), we randomly sample $t \in [0, 1]$ and mask each token independently with the same probability $t$ to obtain $x_t$. Estimate the loss function $L(\theta)$ below via Monte Carlo method (i.e. by sampling many $t$) and do gradient descent. The loss function is defined as :
+<!-- 
+$\begin{equation}
+L(\theta)=-\mathop{\mathbb{E}}_{t,x_0, x_t}\left[\frac{1}{t} \sum_{i=1}^L \mathbb{1}[x_t^i = M]\log p_\theta(x_0^i|x_t)\right]
+\end{equation}$ -->
 
-![Loss Function](https://render.githubusercontent.com/render/math?math=L(\theta)%20%3D%20-%20\mathop{\mathbb{E}}_%7Bt%2Cx_0%2C%20x_t%7D%5B\frac%7B1%7D%7Bt%7D%20\sum_%7Bi%3D1%7D%5EL%20\mathbb{1}%5Bx_t%5Ei%20%3D%20M%5D%20\log%20p_\theta(x_0%5Ei%20%7C%20x_t)%20\right%5D)
+<p align="center">
+    <img src="https://latex.codecogs.com/png.latex?\bg_white\Large%20L(\theta)%20=%20-%20\mathbb{E}_{t,x_0,%20x_t}\left[\frac{1}{t}%20\sum_{i=1}^{L}%20\mathbf{1}[x_t^i%20=%20M]%20\log%20p_\theta(x_0^i%20|%20x_t)%20\right]" />
+</p>
 
 
 where $x_0$ is sampled from the training data, $t$ is sample uniformly from $[0,1]$, and $x_t$ is sampled from the forward process. The indicator function $\mathbb{1}$ ensures that the loss is computed only for the masked tokens.
 
 
-<p align="center">
-    <img src="img/pretrain.png" alt="image explanation">
-</p>
-
-<p align="center">
-    <strong>Pre-training: dLLM is trained on text with random masks applied independently to all tokens at the same ratio t ∼ U[0, 1]</strong>
-</p>
-
+<div align="center">
+    <figure>
+   <img src="img/pretrain.png" alt="image explanation"/> 
+        <figcaption><strong>Pre-training : dLLM is trained on text with random masks applied independently to all tokens at the same ratio t ∼ U[0, 1]</strong></figcaption>
+    </figure>
+</div>
 
 Pre-training dLLM code resembles autoregressive model training but with some small changes. 
 
