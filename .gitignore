@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+data/shakespeare_char/*.txt
+data/shakespeare_char/*.bin 
+data/shakespeare_char/*.pkl 
+
 # Distribution / packaging
 .Python
 build/
@@ -26,6 +30,8 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+*.png 
+*.pt
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
