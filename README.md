@@ -1,13 +1,11 @@
 # nanodLLM
 
-<div align="center">
-    <figure>
-        <img src="img/diffusion_gif.gif" width="500">
-        <figcaption><strong>Inceptionlabs' "Mercury" Diffusion LLM</strong></figcaption>
-    </figure>
-</div>
+<p align="center">
+    <img src="img/diffusion_gif.gif" width="500">
+</p>
 
-<br />
+<p align="center"><strong>Inceptionlabs' "Mercury" Diffusion LLM</strong></p>
+
 
 This is an educational repository for Diffusion Large Language Models (dLLM) following the same format as [nanoGPT](https://github.com/karpathy/nanoGPT) (Reader should probably be familiar with nanoGPT before going further). It keeps up with the latest advancements in dLLMs, including the recent release of [**LLaDA**](https://arxiv.org/pdf/2502.09992) whose 8B model version is available on [Hugging Face](https://huggingface.co/GSAI-ML/LLaDA-8B-Instruct). dLLMs are diffusion models that utilize a discrete random masking process and train a mask predictor to approximate the reverse process. dLLMs are still an on-going research topic but the first commercial dLLM has already been [released](https://www.inceptionlabs.ai/news) (cf gif above). 
 
@@ -31,12 +29,14 @@ $L(\theta) = - \mathop{\mathbb{E}}_{t,x_0, x_t}\left[\frac{1}{t} \sum_{i=1}^L \m
 where $x_0$ is sampled from the training data, $t$ is sample uniformly from $[0,1]$, and $x_t$ is sampled from the forward process. The indicator function $\mathbb{1}$ ensures that the loss is computed only for the masked tokens.
 
 
-<div align="center">
-    <figure>
-   <img src="img/pretrain.png" alt="image explanation"/> 
-        <figcaption><strong>Pre-training : dLLM is trained on text with random masks applied independently to all tokens at the same ratio t ∼ U[0, 1]</strong></figcaption>
-    </figure>
-</div>
+<p align="center">
+    <img src="img/pretrain.png" alt="image explanation">
+</p>
+
+<p align="center">
+    <strong>Pre-training: dLLM is trained on text with random masks applied independently to all tokens at the same ratio t ∼ U[0, 1]</strong>
+</p>
+
 
 Pre-training dLLM code resembles autoregressive model training but with some small changes. 
 
