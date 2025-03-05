@@ -30,7 +30,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-*.png 
+loss_last.png 
 *.pt
 # PyInstaller
 #  Usually these files are written by a python script from a template
