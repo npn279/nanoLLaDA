@@ -7,6 +7,8 @@
     </figure>
 </div>
 
+<br />
+
 This is an educational repository for Diffusion Large Language Models (dLLM) following the same format as [nanoGPT](https://github.com/karpathy/nanoGPT) (Reader should probably be familiar with nanoGPT before going further). It keeps up with the latest advancements in dLLMs, including the recent release of [**LLaDA**](https://arxiv.org/pdf/2502.09992) whose 8B model version is available on [Hugging Face](https://huggingface.co/GSAI-ML/LLaDA-8B-Instruct). dLLMs are diffusion models that utilize a discrete random masking process and train a mask predictor to approximate the reverse process. dLLMs are still an on-going research topic but the first commercial dLLM has already been [released](https://www.inceptionlabs.ai/news) (cf gif above). 
 
 Some advantages of dLLMs over autoregressive (AR) LLMs are : 
@@ -24,7 +26,7 @@ Likewise, the training of this newly GPT-like dLLM also is altered. The dLLM is 
 
 For a training sequence $x_0$ (i.e. sentence), we randomly sample $t \in [0, 1]$ and mask each token independently with the same probability $t$ to obtain $x_t$. Estimate the loss function $L(\theta)$ below via Monte Carlo method (i.e. by sampling many $t$) and do gradient descent. The loss function is defined as :
 
-$$L(\theta) = - \mathop{\mathbb{E}}_{t,x_0, x_t}\left[\frac{1}{t} \sum_{i=1}^L \mathbb{1}[x_t^i = M] \log p_\theta(x_0^i | x_t) \right]$$
+$L(\theta) = - \mathop{\mathbb{E}}_{t,x_0, x_t}\left[\frac{1}{t} \sum_{i=1}^L \mathbb{1}[x_t^i = M] \log p_\theta(x_0^i | x_t) \right]$
 
 where $x_0$ is sampled from the training data, $t$ is sample uniformly from $[0,1]$, and $x_t$ is sampled from the forward process. The indicator function $\mathbb{1}$ ensures that the loss is computed only for the masked tokens.
 
