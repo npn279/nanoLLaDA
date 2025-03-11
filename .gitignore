@@ -31,7 +31,9 @@ share/python-wheels/
 MANIFEST
 
 loss_last.png 
-*.pt
+gpt2 copy.pt
+gpt2_last.pt
+test_gpt_last.pt
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.

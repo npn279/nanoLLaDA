@@ -128,6 +128,7 @@ def train_model(
     mask_id: int,
     save_every: int = 100,
     device: str = "cpu",
+    save_filename = None
 ) -> tuple[torch.nn.Module, List[float], List[float]]:
     """
     Train the neural network model.
@@ -147,6 +148,8 @@ def train_model(
     Returns:
         Tuple of (trained model, training losses, validation losses)
     """
+    if save_filename is None : 
+        save_filename = str(model.__class__.__name__).lower()
     # Initialize progress bar
     pbar = tqdm(range(max_iters))
     losses, val_losses = [], []
@@ -189,7 +192,7 @@ def train_model(
             plt.savefig("loss_last.png")
             plt.close()
             torch.save(
-                model.state_dict(), str(model.__class__.__name__).lower() + "_last.pt"
+                model.state_dict(), save_filename + "_last.pt"
             )
 
     return model, losses, val_losses

@@ -1,11 +1,16 @@
 import os
 import pickle
 import torch
+import argparse
 from model import GPT2
 from generate import generate
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Running dLLM pretraining")
+    parser.add_argument("--path", type=str, default="pretrained_gpt_last.pt")
+    args = parser.parse_args()
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     ######################################################
@@ -50,7 +55,7 @@ if __name__ == "__main__":
     ######################################################
     ################ LOADING PRETRAINED MODEL ############
     ######################################################
-    filename = "gpt2.pt"
+    filename = args.path 
     checkpoint = torch.load(filename)
     model.load_state_dict(checkpoint)
 

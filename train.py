@@ -2,10 +2,16 @@ import os
 import pickle
 
 import torch
+import argparse
 from model import GPT2
+from misc import train_model
 from generate import generate
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Running dLLM pretraining")
+    parser.add_argument("--save_filename", type=str, default='pretrained_gpt')
+    args = parser.parse_args()
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     ######################################################
@@ -58,7 +64,7 @@ if __name__ == "__main__":
         0.1,
         vocab_size - 1,
     )
-    # model, losses, val_losses = train_model(model, data_dir, batch_size, max_iters, lr, weight_decay, grap_clip, mask_id, device=device)
+    model, losses, val_losses = train_model(model, data_dir, batch_size, max_iters, lr, weight_decay, grap_clip, mask_id, device=device, save_filename=args.save_filename)
    
     ######################################################
     ################ GENERATION HYPERPARAMETERS ##########

@@ -88,15 +88,15 @@ Please note that, as mentioned earlier, the diffusion model samples from a broad
 
 To pre-train your model that will saved in `--save_filename`, run:
 ```bash 
-python train.py --save_filename="PATH.pt"
+python train.py --save_filename="YOURFILENAME"
 ```
-Among the most important hyperparameters that can influence the generation process are : the number of steps you take in your diffusion process and the well-known temperature parameters. You can generate a few samples from the pre-trained model provided and changes hyperparameters values in the file :
+Among the most important hyperparameters that can influence the generation process are : the number of steps `steps` you take in your diffusion process and the well-known temperature `temperature` parameters. You can generate a few samples from the pre-trained model provided and changes hyperparameters values in the file :
 ```bash
-python main.py --path="pretrained_gpt.pt"
+python main.py --path="pretrained_gpt_last.pt"
 ```
 or given your trained version :
 ```bash
-python main.py --path="PATH.pt"
+python main.py --path="YOURFILENAME"
 ```
 
 
