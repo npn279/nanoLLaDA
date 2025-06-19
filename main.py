@@ -2,8 +2,8 @@ import os
 import pickle
 import torch
 import argparse
-from model import GPT2
-from generate import generate
+from src.model import GPT2
+from src.generate import generate
 
 
 if __name__ == "__main__":
